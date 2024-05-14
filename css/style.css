@@ -1,0 +1,772 @@
+/* ----------------------------- MAIN HTML BODY */
+
+html,
+body {
+    margin: 0;
+}
+
+/* ----------------------------- FONTS */
+
+p,
+strong,
+small,
+a,
+.text-sans-serif,
+input,
+button,
+.upper-close-button-container p {
+    font-family:aktiv-grotesk,sans-serif;
+    font-weight:300;
+    font-style:normal
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.text-serif,
+li {
+    font-family:domaine,serif;
+    font-weight: 100;
+}
+
+/* ---------------------- */
+
+.identify-whose-answer-aids div {
+    font-size: 100%;
+    font-family: serif;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 200%;
+}
+
+h3 {
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+#main-title {
+    font-size: 700%;
+    margin-top: 20px;
+}
+
+#instruction-area h3 {
+    font-family:aktiv-grotesk,sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size: 100%;
+    margin-bottom: 1%;
+}
+
+#about-modal p {
+    line-height: 1.5;
+}
+
+.semi-small-text {
+    font-size: 80%;
+}
+
+.small-text {
+    font-size: 60%;
+}
+
+.text-bold {
+    font-weight: 900;
+}
+
+/* ----------------------------- GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-line {
+    display: inline-grid;
+}
+
+
+/* ----------------------------- HERO AREA */
+
+#main-article-image {
+    margin: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    max-width: 900px;
+}
+
+/* ----------------------------- INSTRUCTION AREA */
+
+#instruction-area {
+    background-color: #f9e9f5;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 4%;
+}
+
+#instruction-area p {
+    line-height: 1.4;
+}
+
+#main-ux-buttons {
+    display: flex;
+    text-align: center;
+    margin: auto;
+    justify-items: center;
+}
+
+
+/* ----------------------------- QUESTION AREA */
+
+#question-area {
+    margin-top: 100px;
+    max-width: 900px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.question-line {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 150%;
+}
+
+.question-element {
+    text-align: center;
+}
+
+.question-section-title {
+    margin-bottom: 3%;
+}
+
+p.question-section-explanation {
+    padding-left: 10px;
+    line-height: 1.5;
+}
+
+.section-logo-container {
+    max-width: 200px;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.section-logo {
+    width: 100%;
+    height: auto;
+}
+
+.section-divider {
+    margin-top: 60px;
+}
+
+.identify-whose-answer-aids p {
+    padding-bottom: 0% !important;
+}
+
+/* ----------------------------- ANSWER CONTAINERS */
+
+.answer-container {
+    display: grid;
+    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px;
+    align-items: center;
+    justify-items: center;
+}
+
+.answer-container p {
+    text-align: center;
+}
+
+.answer-aid-small {
+    font-size: 80%;
+    text-transform: uppercase;
+}
+
+.answer-line {
+    display: inline-grid;
+    text-align: center;
+    margin: 3px;
+}
+
+.answer-line p {
+    font-size: 0.7rem;
+}
+
+.answer-line input {
+    cursor: pointer;
+}
+
+.answer-container {
+    max-width: 600px;
+    margin: auto;
+    justify-content: center;
+}
+
+.modal-question {
+    display: inline-grid;
+    grid-template-columns: 60px 60px 60px 60px 60px 60px 60px;
+    justify-items: center;
+    align-items: center;
+    max-width: 600px;
+}
+
+.modal-questionline {
+    margin-top: 50px;
+    font-size: 115%;
+    margin-bottom: 10px;
+}
+
+.modal-radio {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.modal-radio-checked {
+    background-color: black;
+}
+
+.modal-radio-user-checked {
+    background-color: rgb(100, 100, 100);
+}
+
+.modal-radio p {
+    display: inline;
+    font-size: 100%;
+    font-family: serif;
+}
+
+.modal-explanation {
+    display: flex;
+    padding: 20px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+
+.modal-explanation .profile-picture-small-box-div {
+    width: 10%;
+    margin-right: 10px;
+}
+
+.modal-explanation-text {
+    width: 80%;
+    line-height: 1.5;
+    margin: 0;
+}
+
+img.modal-explanation-profile-image {
+    margin-right: 10px;
+}
+
+.identify-whose-answer-aids {
+    display: flex;
+    text-align:center;
+    width: 100%;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ----------------------------- RESULTS AREA */
+
+#results-area {
+    display: none;
+    max-width: 900px;
+    margin: auto;
+}
+
+.bigBox {
+    grid-column-end: span 2;
+}
+
+/* 
+#browse-list */
+#top-list,
+.party-candidates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow: hidden;
+}
+
+.party-name-p {
+    display: inline-block;
+}
+
+.fold-party-grid-button {
+    display: inline-block;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.fold-party-grid-button {
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.profile-small-box {
+    grid-column-end: span 1;
+    cursor: pointer;
+    border: 1px solid grey;
+    margin: 5px;
+    padding: 4px;
+    display: flex;
+    user-select: none;
+}
+
+.profile-small-box-text {
+    font-size: 120%;
+}
+
+h3.profile-picture-small-box-text {
+    font-size: 100%;
+}
+
+.profile-small-box p {
+    text-transform: uppercase;
+    font-size: 80%;
+}
+
+.profile-small-box:hover {
+    border: 1px solid black;
+    background-color: #d0cdcd;
+}
+
+.profile-picture-small-box {
+    width: 80px;
+    display: block;
+    margin-right: 10px;
+}
+
+.candidate-party-logo {
+    max-width: 100px;
+    margin: auto;
+}
+
+.result-logo-container {
+    max-width: 70px;
+    margin: auto;
+}
+
+.results-candidate-header-text {
+    font-size: 150%;
+    text-align: center;
+}
+
+#results-footer {
+    margin-bottom: 20px;
+}
+
+.candidate-box {
+    padding: 2%;
+}
+
+.candidate-picture {
+    width: 100px;
+    height: 120px;
+}
+
+.party-separator {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    overflow: hidden;
+    padding-top: 20px;
+    user-select: none;
+}
+
+/* ----------------------------- MODAL */
+
+#disable-main-content-ui-functions-layer {
+    position: fixed;
+    top: 0px;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    filter: opacity(0);
+    z-index: 50;
+}
+
+#modal-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    width: 80%;
+    max-width: 900px;
+    min-height: 100vh;
+    z-index: 100;
+    overflow: auto;
+    height: 100%;
+    display: none;
+    transform: translateX(-50%);
+}
+
+.modal-outer {
+    margin: auto;
+}
+
+.modal-inner {
+    min-height: 90dvh;
+    padding: 15px;
+    border: solid black 1px;
+    border-radius: 10px;
+    background-color: #f9e9f5;
+}
+
+#profile-modal,
+#about-modal {
+    position: absolute;
+    top: 0px;
+    order: 99;
+    width: 100%;
+    min-height: 90dvh;
+}
+
+
+#main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: hidden;
+    z-index: 100;
+}
+
+.modal-picture {
+    max-width: 200px;
+    margin: auto;
+    display: block;
+}
+
+
+#candidate-selection-area {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.candidate-selection-button {
+    margin-top: 0px;
+    border: 1px solid transparent;
+}
+
+.candidate-selection-button:hover {
+    cursor: pointer;
+    background-color: grey;
+    border: 1px solid black;
+}
+
+
+
+/* ----------------------------- GENERAL */
+
+.text-center {
+    text-align: center;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+input[type="radio"] {
+    height: 40px;
+    width: 50px;
+    accent-color: black;
+}
+
+/* ----------------------------- BUTTONS */
+
+button {
+    display: block;
+    margin: auto;
+    margin-top: 28px;
+    padding: 15px;
+    cursor: pointer;
+    min-width: 300px;
+    font-weight: 100;
+}
+
+#show-results-button-container {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#show-results-button-container p {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#show-results-button-container button {
+    margin-top: unset;
+}
+
+.upper-close-button-container {
+    width: 70px;
+    margin-left: auto;
+    cursor: pointer;
+    border: 1px solid black;
+    text-align: center;
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.upper-close-button-container:hover {
+    background-color: gray;
+}
+
+
+.upper-close-button-container p {
+    font-size: 1.6rem;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+    font-weight: 800;
+}
+
+#scroll-to-top-button-container {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+#scroll-to-top-button {
+    width: 30px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+}
+
+#scroll-to-top-button:hover {
+    background-color: gray;
+}
+
+.scroll-top-logo {
+    width: 100%;
+}
+
+.close-button-wrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.info-button-wrapper {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.close-button {
+    font-size: 1.5rem;
+    background-color: black;
+    color: white;
+    border: unset;
+    margin: auto;
+}
+
+#info-button .close-button {
+    font-size: 0.8rem;
+}
+
+.close-button:hover {
+    background-color: gray !important;
+}
+
+#twitter-sharer button {
+    font-size: 0.9rem;
+    margin-top: 40px;
+    background-color: blue;
+    border: 1px solid black;
+}
+
+#twitter-sharer button:hover {
+    background-color: gray;
+}
+
+.span-hyperlink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.span-hyperlink:hover {
+    cursor: pointer;
+}
+
+/* ----------------------------- FIRST LOAD HIDE */
+
+#loading-text,
+#loading-text h3  {
+    text-align: center;
+}
+
+#loading-symbol {
+    margin-top: 10px;
+    width: 30px;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotateZ(0deg); }
+    to { transform: rotateZ(360deg); }
+}
+
+.hide-before-onload {
+    display: none;
+}
+
+/* ----------------------------- FIX TO OLD HEADER */
+li.menu-item {
+    margin-bottom: 5px;
+}
+
+/* ----------------------------- MEDIA QUERIES */
+
+/* ------ MOBILE */
+@media screen and (max-width: 900px) {
+    #hero-block {
+        margin-top: 10%;
+    }
+
+    #main-article-image {
+        display: none;
+    }
+    
+    #main-title {
+        font-size: 380%;
+    }
+    
+    #about-modal p {
+        line-height: 1.3;
+    }
+    
+    #instruction-area {
+        margin: 20px;
+    }
+    
+    #main-ux-buttons {
+        flex-wrap: wrap;
+    }
+
+    .info-button-wrapper {
+        margin-bottom: 2%;
+    }
+
+    /* 
+    #browse-list */
+    #top-list,
+    .party-candidates-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #candidate-selection-area {
+        grid-template-columns: auto;
+    }
+
+    .section-logo-container {
+        max-width: 100px;
+    }
+
+    .profile-small-box {
+        margin: unset;
+        padding: 10px;
+    }
+
+    h3.profile-picture-small-box-text {
+        font-size: 100%;
+    }
+
+    .modal-explanation-text {
+        line-height: 1.3;
+    }
+
+    button {
+        min-width: unset;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    /* 
+    #browse-list */
+    #top-list,
+    .party-candidates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #about-modal p,
+    .profile-small-box p {
+        font-size: 70%;
+    }
+
+    .question-line {
+        font-size: 120%;
+    }
+
+    #modal-wrapper {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        min-height: 100vh;
+        z-index: 100;
+        overflow: auto;
+        display: none;
+        transform: unset;
+    }
+}
+
+@media screen and (max-width: 500px) {  
+    .modal-explanation .profile-picture-small-box-div {
+        display: none;
+    }
+
+    .answer-container,
+    .modal-question {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    input[type="radio"] {
+        height: 20px;
+        width: 20px;
+    }
+
+}
+
+@media screen and (max-width: 300px) {
+    #main-title {
+        font-size: 100%;
+    }
+
+    .profile-picture-small-box-div {
+        display: none;
+    }
+
+    .modal-questionline {
+        font-size: 90%;
+    }
+
+    .number-empty-field,
+    .answer-aid-small {
+        display: none;
+    }
+
+    h2 {
+        font-size: 100%;
+    }
+
+    .question-line {
+        font-size: 80%;
+    }
+}

@@ -1,0 +1,9 @@
+export function createAnswerAids() {
+    return "\n    <div class=\"answer-container\">\n        <div class=\"answer-line\">\n            <p>t\u00E4ysin eri mielt\u00E4</p>\n        </div>\n\n        <div class=\"answer-line\">\n            <p>jokseenkin eri mielt\u00E4</p>\n        </div>\n\n        <div class=\"answer-line\">\n            <p>neutraali / en osaa sanoa</p>\n        </div>\n\n        <div class=\"answer-line\">\n            <p>jokseenkin samaa mielt\u00E4</p>\n        </div>\n\n        <div class=\"answer-line\">\n            <p>t\u00E4ysin samaa mielt\u00E4</p>\n        </div>\n    </div>\n    ";
+}
+export function createAnswerAidsResults() {
+    return "\n    <div>" + identifyWhoseAnswerAids() + "\n        <div class=\"answer-container\">\n            <div class=\"answer-line\">\n                <p>t\u00E4ysin eri mielt\u00E4</p>\n            </div>\n            \n            <div class=\"answer-line\">\n                <p>jokseenkin eri mielt\u00E4</p>\n            </div>\n            <div class=\"answer-line\">\n                <p>neutraali / en osaa sanoa</p>\n            </div>\n            <div class=\"answer-line\">\n                <p>jokseenkin samaa mielt\u00E4</p>\n            </div>\n            <div class=\"answer-line\">\n                <p>t\u00E4ysin samaa mielt\u00E4</p>\n            </div>\n        </div>\n    </div>\n    ";
+}
+export function identifyWhoseAnswerAids() {
+    return "\n    <div class=\"identify-whose-answer-aids\">\n        <div style=\"display:block;width:20px;height:20px;background-color:gray; margin-right: 10px\"></div>\n        <p> = sinun vastauksesi <span style=\"color:transparent\">---</span> </p>\n        <div style=\"display:block;width:20px;height:20px;border:1px solid black; margin-right: 10px\">X</div>\n        <p> = ehdokkaan vastaus</p>\n    </div>\n    ";
+}

@@ -1,0 +1,415 @@
+<html>
+<html lang="fi">
+<head>
+<meta>
+
+<!-- -------------------------------------------------------- HEAD-META -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8" />
+<!-- -------------------------------------------------------- HEAD-META -->
+
+<link rel='stylesheet' href='css/style.css'>
+
+<meta name='robots' content='noindex,follow'>
+
+<title>THE VAALIKONE 0.7.2</title>
+</meta>
+</head>
+<body id="body-element" onload="onloadEvent()" onscroll="checkScrollButtonToggle()">
+
+    <!-- -------------------------------------------------------- MODAL -->
+    <div id="modal-wrapper" style="display: none">
+        <div id="about-modal" class="modal-outer" style="display: none">
+            <div class="modal-inner">
+                <div style="width: 100%;">
+                    <div class="upper-close-button-container">
+                        <div class="upper-close-button" onclick="closeAboutModal()">
+                            <p>X</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div style="width: 100%; text-align: center">
+                </div>
+                
+                <div style="max-width: 800px; margin: auto">
+                    <p>Vastaa jokaiseen kysymykseen, oletko väitteen kanssa samaa vai eri mieltä.</p>
+                                        
+                    <p>Kun olet vastannut kaikkiin kysymyksiin, klikkaa kysymysten lopussa olevaa NÄYTÄ TULOKSET -nappia.</p>
+                    
+                    <p>Voit myös muokata vastauksiasi jälkikäteen. Kun olet tehnyt muutokset, klikkaa uudelleen NÄYTÄ TULOKSET -nappia.</p>
+                    
+                    <p>
+                        Vaalikoneen vastaukset pisteytetään jokaisen kysymyksen osalta laskemalla etäisyys ehdokkaan ja käyttäjän vastauksen välillä.
+                    </p>
+    
+                    <p>
+                        Jos ehdokas on esimerkiksi vastannut kysymykseen vaihtoehdon numero 1 ja käyttäjä puolestaan 5, tämän kysymyksen vastausten väliseksi etäisyydeksi tulee 4 pistettä. ( 5 - 1 = 4 )
+                    </p>
+                    
+                    <p>
+                        Jos taas ehdokas on vastannut kysymykseen vaihtoehdon numero 4 ja käyttäjä samoin 4, tämän kysymyksen etäisyydeksi tulee 0 pistettä. ( 4 - 4 = 0 )
+                    </p>
+    
+                    <p>
+                        Ja edelleen, jos ehdokas on vastannut kysymykseen vaihtoehdon numero 2 ja käyttäjä 4, tämän kysymyksen etäisyydeksi tulee 2 pistettä. ( 4 - 2 = 2 )
+                    </p>
+    
+                    <p>
+                        Etäisyyspisteet lasketaan yhteen jokaisesta kysymyksestä.
+                    </p>
+    
+                    <p>
+                        Mitä pienempi yhteenlaskettu etäisyyspisteiden määrä on, sitä parempi täsmäävyys ehdokkaan ja käyttäjän välillä on. Näin ollen etäisyyspisteiden yhteismäärä 0 tarkoittaa 100 % täsmäävyyttä.
+                    </p>
+    
+                    <p>
+                        Vastaavasti etäisyyspisteiden korkein mahdollinen yhteismäärä 140 * tarkoittaa 0 % täsmäävyyttä.
+                    </p>
+    
+                    <p>
+                        * Yhden kysymyksen osalta käyttäjän ja ehdokkaan vastausten välinen maksimietäisyys on 4 pistettä ( 5 - 1 = 4 ). Näin ollen koko 35-kysymystä käsittävän vaalikoneen osalta yhteenlaskettu maksimietäisyyspistemäärä on 140 pistettä ( 4 x 35 = 140 ).
+                    </p>
+                </div>
+    
+    
+                <div class="close-button-wrapper">
+                    <button onclick="closeAboutModal()" class="close-button">SULJE</button>
+                </div>
+            </div>
+        </div>
+    
+        <div id="results-modal" class="modal-outer" style="position: absolute; top: 0px; order: 99; width: 100%">
+            <div class="modal-inner">
+                <div style="width: 100%;">
+                    <div class="upper-close-button-container">
+                        <div class="upper-close-button" onclick="closeResultsModal()">
+                            <p>X</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="results-modal-content">
+                    <div id="results-candidate-header"></div>
+                    <div id="results-candidate-selection-area"></div>
+                </div>
+    
+                <div>
+                    <button id="show-more-candidates-button" onclick="$('.hidden-results-candidate-box').show(); $(this).hide();" class="close-button">NÄYTÄ KAIKKI EHDOKKAAT</button>
+                </div>
+    
+                <div class="close-button-wrapper">
+                    <button onclick="closeResultsModal()" class="close-button">SULJE</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="browse-modal" class="modal-outer" style="position: absolute; top: 0px; order: 99; width: 100%">
+            <div class="modal-inner">
+                <div style="width: 100%;">
+                    <div class="upper-close-button-container">
+                        <div class="upper-close-button" onclick="closeBrowseModal()">
+                            <p>X</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="browse-modal-content">
+                    <div id="browse-candidate-header"></div>
+                    <div id="browse-candidate-selection-area"></div>
+                </div>
+    
+                <div class="close-button-wrapper">
+                    <button onclick="closeBrowseModal()" class="close-button">SULJE</button>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div id="single-candidate-results-modal" class="modal-outer" style="position: absolute; top: 0px; order: 100; width: 100%">
+            <div class="modal-inner">
+                <div style="width: 100%;">
+                    <div class="upper-close-button-container">
+                        <div class="upper-close-button" onclick="closeSingleCandidateResultsModal()">
+                            <p>X</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="results-modal-content" style="max-width: 800px; margin: auto">
+                    <div id="single-candidate-results-candidate-metadata" style="text-align: center;"></div>
+                    <div id="single-candidate-results-candidate-question-answers"></div>
+                </div>
+                <div class="close-button-wrapper">
+                    <button onclick="closeSingleCandidateResultsModal()" class="close-button">SULJE</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <!-- -------------------------------------------------------- MODAL -->
+
+    <div id="main-content">
+        
+        <!-- -------------------------------------------------------- HEADER -->
+        <link rel='stylesheet' href='additional/header.css'>
+<link rel="stylesheet" href="additional/menu.css">
+<link rel="stylesheet" href="additional/style.css">
+<link rel="stylesheet" href="additional/mobile-friendly-grid.css">
+<link rel="stylesheet" href="additional/footer.css">
+
+<!-- HEADER 2 START -->
+
+<div class="position-sticky" style="z-index: 1000; background: black; color: white;">
+
+    <div id="header" class="column-wd-100 centered">
+
+        <div class="flex" style="justify-content: space-between; max-width: 1700px; margin: auto; height: 100%">
+            <a href="https://ulkopolitist.fi/" target="_blank" style="display: flex; height: 100%; align-items: center;">
+                <img src="https://static.ulkopolitist.fi/images/website-navigation/ulkopolitist-logo-tight.png" id="site-logo" alt="Ulkopolitistin logo" class="main-logo invert-on-hover" style="filter: invert(1); width: auto;">
+            </a>
+
+            <div id="header-menu" class="menu flex">
+                <div id="menu-buttons" class="flex flex-wrap" style="margin: auto; align-items: self-end;">
+                    <div id="hamburger-menu-button" class="menu-item invert-on-hover" style="width: 40px; min-width: 70px;" onclick="hamburgerMenuToggle()">
+                        <a id="hamburger-menu-button-a" href="#footer">
+                            <img src="https://static.ulkopolitist.fi/images/website-navigation/hampurilainen.png" alt="Valikon symboli">
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    
+    <div id="hamburger-menu-content" class="margin-top-small" style="display: none;">
+        <div class="page-wrapper" style="display: flex; flex-wrap: wrap; padding: 0px 15px;">
+            <div class="column-wd-50">
+                <h1 class="color-gray centered tablet-align-left">Osastot</h1>
+                <div class="menu header-menu color-white">
+                    <ul>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//aasia-ja-tyynimeri/" class="color-black">Aasia ja Tyynimeri</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//lahi-ita-ja-afrikka/" class="color-black">Lähi-itä ja Afrikka</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//amerikat/" class="color-black">Amerikat</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//eurooppa/" class="color-black">Eurooppa</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//suomen-ulko-ja-turvallisuuspolitiikka/" class="color-black">Suomi</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//globaalit-ilmiot/" class="color-black">Globaalit ilmiöt</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//konfliktit-ja-turvallisuus/" class="color-black">Konfliktit ja turvallisuus</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//podcast/" class="color-black">Podcast & videot</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column-wd-50">
+                <h1 class="color-gray centered tablet-align-right">Meistä</h1>
+                <div class="menu header-menu color-white align-right">
+                    <ul class="align-right">
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//about/" class="color-black">Mikä The Ulkopolitist?</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//paatoimitus/" class="color-black">Tekijät</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//vieraskynat/" class="color-black">Vieraskynät</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//tietosuojaseloste/" class="color-black">Tietosuojaseloste</a></li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//the-ulkopolitist-in-brief/" class="color-black">About Us in English</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    // Jos javascript on käytössä, poistetaan ylärivin napeissa olevat hyperlinkit käytöstä. Syy: Samat toiminnallisuus on käytettävissä yläsivun hampurilaisvalikossa ja hakunapissa. Mutta koska nämä toiminnot vaativat javascriptin toimiakseen, tarjotaan käyttäjälle fallback-ratkaisu. ---  Olisi hyvien tapojen mukaista keskittää skriptit erilliseen tiedostoon, mutta tämä skripti tulisi ehtiä ajaa heti kun header-osa on näkyvissä. Muutoin käyttäjäjäkokemuksesta tulee epätasainen. Riippuen latausajoista ja script-blockingista, joskus tämä nappi vie tarkennetulle hakusivulle, välillä näkyviin tulee pop-uphakulaatikko.
+    document.getElementById( 'hamburger-menu-button-a' ).removeAttribute( 'href' );
+</script>
+
+<!-- HEADER 2 END -->
+
+        <!-- -------------------------------------------------------- HEADER -->
+
+        <!-- -------------------------------------------------------- MAIN CONTENT -->
+        <div id="hero-block">
+            <div style="margin: auto">
+                <div id="main-article-image">
+                    <img src="./images/ui/FINAL_Vaalikoneen_visu.jpg" alt="" style="width: 100%; max-width: 1200px; margin: auto; margin-top: 10px">
+                </div>
+                <h1 id="main-title" style="text-align: center; margin: 0px">The Vaalikone 0.7.2</h1>
+                <div id="loading-text">
+                    <h3>LADATAAN... PIENI HETKI...</h3>
+                    <img id="loading-symbol" src="./images/ui/scroll/arrow-logo.png"/>
+                </div>
+            </div>
+        </div>
+        
+        <div id="instruction-area" class="hide-before-onload">
+            <p>Tervetuloa The Ulkopolitistin vaalikoneeseen! Kuka vuoden 2024 presidentinvaalien ehdokkaista on ulkopoliittisissa kysymyksissä kanssasi samalla taajuudella, entä kenen vastaukset resonoivat vähiten?</p>
+            <p>Pääset vertailemaan omia vastauksiasi ehdokkaiden kanssa, kun olet vastannut kaikkiin alla oleviin kysymyksiin. Voit myös <span class="span-hyperlink" onclick="openBrowseModal()">selata ehdokkaiden vastauksia</span> vastaamatta itse kysymyksiin.</p>
+        </div>
+        
+        <div>
+            <div id="results-header"></div>
+            <div id="results-area" class="grid"></div>
+            <div id="results-footer"></div>
+        </div>
+        
+        <div id="answer-upper-container"></div>
+        
+        <div id="question-area"></div>
+        <!-- -------------------------------------------------------- MAIN CONTENT -->
+
+        <!-- -------------------------------------------------------- PRE-FOOTER -->
+        <div style="margin-top: 50px;"></div>
+
+<div class="hide-before-onload">
+    <div id="show-results-button-container">
+        <button id="show-results-button" class="close-button">NÄYTÄ TULOKSET<br><span class='small-text'>(ei vielä vastattu kaikkiin)</span></button>
+        <p id="show-results-button-container-separator">TAI</p>
+        <button id="browse-candidates-button" onclick="openBrowseModal()" class="close-button">SELAA EHDOKKAITA</button>
+        
+        <div>
+            <p class="span-hyperlink" onclick="openAboutModal()" style="margin-top: 50px;">Lisätietoa vaalikoneesta</p>
+        </div>
+    </div>
+
+    <div class="semi-small-text" style="text-align: center; margin-top: 40px; margin-bottom: 20px">
+        <p>Työryhmä: Annastina Haapasaari, Iida Hyyryläinen, Milka Kiukkonen, Nina Näsman, Petri Vanhanen</p>
+    </div>
+</div>
+
+        <!-- -------------------------------------------------------- PRE-FOOTER -->
+
+        <!-- -------------------------------------------------------- FOOTER -->
+        <!-- ------------------- FOOTER START -->
+
+<div id="footer" class="column-wd-100 bg-black hide-before-onload">
+    <div class="column-wd-100 cta margin-auto desktop-column-wd-75">
+        <div class="flex flex-wrap flex-center" style="padding: 0 15px;">
+    
+            <div class="column-wd-25 footer-container">
+                <h3 class="centered color-gray tablet-align-left">Osastot</h3>
+                <div class="menu footer-menu invert">
+                    <ul>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//aasia-ja-tyynimeri/" class="color-black">Aasia ja Tyynimeri</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//lahi-ita-ja-afrikka/" class="color-black">Lähi-itä ja Afrikka</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//amerikat/" class="color-black">Amerikat</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//eurooppa/" class="color-black">Eurooppa</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//suomen-ulko-ja-turvallisuuspolitiikka/" class="color-black">Suomi</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//globaalit-ilmiot/" class="color-black">Globaalit ilmiöt</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//konfliktit-ja-turvallisuus/" class="color-black">Konfliktit ja turvallisuus</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi/category//podcast/" class="color-black">Podcast & videot</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+    
+            <div class="column-wd-25 footer-container">
+                <h3 class="centered color-gray tablet-align-left">Meistä</h3>
+                <div class="menu footer-menu invert">
+                    <ul>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//about/" class="color-black">Mikä The Ulkopolitist?</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//paatoimitus/" class="color-black">Tekijät</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//vieraskynat/" class="color-black">Vieraskynät</a>
+                        </li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//tietosuojaseloste/" class="color-black">Tietosuojaseloste</a></li>
+                        <li class="menu-item"><a target="_blank" href="https://ulkopolitist.fi//the-ulkopolitist-in-brief/" class="color-black">About Us in English</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+    
+            <div class="column-wd-50 mobile-wd-100">
+                <div class="tablet-align-left" style="padding-bottom: 10px; display: inline-block">
+                    <a href="mailto:toimitus@ulkopolitist.fi" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/email-logo.png" alt="Email-logo" class="some-logo">
+                    </a>
+                    <a target="_blank" href="https://www.facebook.com/ulkopolitist" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/fb.png" alt="Facebook-logo" class="some-logo">
+                    </a>
+                    <a target="_blank" href="https://twitter.com/Ulkopolitist" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/twitter.png" alt="Twitter-logo" class="some-logo">
+                    </a>
+                    <a target="_blank" href="https://www.instagram.com/ulkopolitist/" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/insta.png" alt="Instagram-logo" class="some-logo">
+                    </a>
+                    <a target="_blank" href="https://www.linkedin.com/company/the-ulkopolitist/" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/linkedin.png" alt="Linkedin-logo" class="some-logo">
+                    </a>
+                    <a target="_blank" href="https://ulkopolitist.fi/rss-syotteet/" class="some-link">
+                        <img src="https://static.ulkopolitist.fi/images/website-navigation/some/rss-logo.png" alt="RSS-logo" class="some-logo">
+                    </a>
+                </div>
+                <p class="centered text-sans-serif color-white mobile-hide">The Ulkopolitist on vuonna 2011 perustettu kansainvälisen politiikan ilmiöitä sekä suomalaista ulko- ja turvallisuuspolitiikkaa käsittelevä sitoutumaton verkkolehti.</p>
+                <p class="centered text-sans-serif color-white mobile-hide">Kaikki oikeudet pidätetään.</p>
+                <p class="text-sans-serif color-gray"><span>&copy;</span> THE ULKOPOLITIST 2023</p>
+            </div>
+        </div>
+    
+    </div>
+</div>
+    
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Jos javascript on käytössä, laitetaan footerissa olevat elementit piiloon mobiilissa. Syy: samat hakutoiminnot on käytettävissä yläsivun hampurilaisvalikossa. Mutta koska hampurilainen vaatii javascriptin toimiakseen, tarjotaan käyttäjälle fallback-ratkaisu. --- Olisi hyvien tapojen mukaista keskittää skriptit erilliseen tiedostoon, mutta tämä skripti tulisi ehtiä ajaa heti kun header-osa on näkyvissä. Muutoin käyttäjäjäkokemuksesta tulee epätasainen.
+    document.getElementsByClassName( 'footer-container' )[0].classList.add( 'mobile-hide' );
+    document.getElementsByClassName( 'footer-container' )[1].classList.add( 'mobile-hide' );
+</script>
+    
+
+
+<!-- -------------------- FOOTER END -->
+        <!-- -------------------------------------------------------- FOOTER -->
+
+        <!-- -------------------------------------------------------- SCROLL-TOP -->
+        <div id="scroll-to-top-button-container" style="display: none">
+            <div id="scroll-to-top-button">
+                <img src="./images/ui/scroll/arrow-logo.png" class="scroll-top-logo" alt="">
+            </div>
+        </div>
+        <!-- -------------------------------------------------------- SCROLL-TOP -->
+
+    </div>
+
+    <div id="disable-main-content-ui-functions-layer"></div>  
+
+</body>
+
+<!-- EXTERNAL DEPENDENCIES -->
+<script type='text/javascript' src='js/d3.v7.js'></script>
+<script type='text/javascript' src='js/jquery-3.7.1.min.js'></script>
+
+<!-- UI -->
+<script type='text/javascript' src='js/modal.js'></script>
+<script type='text/javascript' src='js/scroll-to-top-button.js'></script>
+
+<!-- MAIN -->
+<script type='module' src='js/main.js'></script>
+
+<!-- ADDITIONAL -->
+<script type='text/javascript' src='js/html-header-script.js'></script>
+<script type='text/javascript' src='js/candidate-browse-grid-script.js'></script>
+
+</html>
