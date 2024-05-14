@@ -62,8 +62,8 @@ function main() {
         return __generator(this, function (_e) {
             switch (_e.label) {
                 case 0:
-                    dataFile = './data/test/2024-data-3.csv';
-                    metadataFile = './data/test/2024-meta-2.csv';
+                    dataFile = './data/staging/2024-data-3.csv';
+                    metadataFile = './data/staging/2024-meta-2.csv';
                     programData = createDataWrapper.createDataWrapper();
                     // Load candidate raw data
                     _a = programData;
